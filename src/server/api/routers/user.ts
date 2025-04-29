@@ -25,6 +25,6 @@ export const userRouter = createTRPCRouter({
                 throw new TRPCError({ code: 'NOT_FOUND' })
             }
 
-            return { ...user }
+            return user
         }),
 })
