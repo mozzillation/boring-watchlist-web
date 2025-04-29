@@ -1,9 +1,4 @@
 {
-  "useTabs": false,
-  "quoteProps": "as-needed",
-  "jsxSingleQuote": false,
-  "htmlWhitespaceSensitivity": "ignore",
-  "proseWrap": "preserve",
   "bracketSameLine": false,
   "bracketSpacing": true,
   "semi": false,
