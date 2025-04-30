@@ -1154,6 +1154,11 @@ color@^4.2.3:
     color-convert "^2.0.1"
     color-string "^1.9.0"
 
+commitlint-plugin-regex-match@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/commitlint-plugin-regex-match/-/commitlint-plugin-regex-match-1.2.4.tgz#6290ce9f8acb16e29545ae653806cb37fc866bf7"
+  integrity sha512-mlWou5uYamb2JsL4XEMmX7MCAIVKyzvdANvfZvHKV1eFGLXtcgidtfSRHjV4h9BmZu0TE8nWea2IoDo1jt9n2Q==
+
 compare-func@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/compare-func/-/compare-func-2.0.0.tgz#fb65e75edbddfd2e568554e8b5b05fff7a51fcb3"
