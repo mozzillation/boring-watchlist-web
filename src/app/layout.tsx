@@ -14,9 +14,7 @@ type RootLayoutProps = Readonly<{
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={` antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
