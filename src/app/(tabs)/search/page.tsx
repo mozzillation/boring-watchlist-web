@@ -1,5 +1,5 @@
 const SearcPage = () => {
-  return <div>search</div>
+  return <div className={`h-[200vh] `}>search</div>
 }
 
 export default SearcPage

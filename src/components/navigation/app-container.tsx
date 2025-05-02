@@ -6,10 +6,12 @@ type AppContainerProps = React.PropsWithChildren
 
 const AppContainer: React.FC<AppContainerProps> = ({ children }) => {
   return (
-    <div className={`flex flex-row h-screen w-screen`}>
+    <div
+      className={`flex flex-col-reverse sm:flex-row h-screen w-screen relative`}
+    >
       <Sidebar />
       <main
-        className={`flex h-full w-full overflow-auto grow shrink bg-background`}
+        className={`h-auto w-screen sm:w-full overflow-scroll grow bg-background p-2`}
       >
         {children}
       </main>
