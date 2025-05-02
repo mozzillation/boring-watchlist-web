@@ -410,6 +410,13 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.1.tgz#8a7922fec949f037c204c79f6b83238d2482384b"
   integrity sha512-hw1iIAHpNE8q3uMIRCgGOeDoz9KtFNarFLQclLxr/LK1VBkj8nby18RjFvr6aP7USRYAjTZW6yisnBWMX571Tw==
 
+"@instantdb/admin@^0.18.9":
+  version "0.18.9"
+  resolved "https://registry.yarnpkg.com/@instantdb/admin/-/admin-0.18.9.tgz#8fe526844954ce1cc86754283eec436d7a24c80c"
+  integrity sha512-uwWlPt3vAgBQ9b7HXDRLgE2a5JBDr8KR4KYMmPrzpRRDslJakIme4TRYcDWjaEqFEfgNI4KR56fMktI/XyQw6A==
+  dependencies:
+    "@instantdb/core" v0.18.9
+
 "@instantdb/core@v0.18.9":
   version "0.18.9"
   resolved "https://registry.yarnpkg.com/@instantdb/core/-/core-0.18.9.tgz#a8c171974d50b48b4ce1fc19fd78cd4ceb1bed11"

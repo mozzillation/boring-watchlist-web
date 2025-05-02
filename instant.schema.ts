@@ -19,6 +19,7 @@ const _schema = i.schema({
       displayName: i.string().indexed(),
       username: i.string().unique().indexed(),
     }),
+    follows: i.entity({}),
   },
   links: {
     postsAuthorId: {
@@ -45,6 +46,31 @@ const _schema = i.schema({
         on: '$users',
         has: 'one',
         label: 'profile',
+        onDelete: 'cascade',
+      },
+    },
+    following: {
+      forward: {
+        on: 'follows',
+        has: 'many',
+        label: 'following',
+      },
+      reverse: {
+        on: 'profiles',
+        has: 'many',
+        label: 'followers',
+      },
+    },
+    followers: {
+      forward: {
+        on: 'follows',
+        has: 'many',
+        label: 'follower',
+      },
+      reverse: {
+        on: 'profiles',
+        has: 'many',
+        label: 'followings',
       },
     },
   },

@@ -4,6 +4,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_TMDB_API_URL: z.string().url(),
   TMDB_API_KEY: z.string().min(1),
   NEXT_PUBLIC_INSTANT_APP_ID: z.string().min(1),
+  INSTANT_APP_ADMIN_TOKEN: z.string().min(1),
 })
 
 const parsed = envSchema.safeParse(process.env)
