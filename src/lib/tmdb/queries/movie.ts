@@ -10,7 +10,7 @@ import { fetchAndSafeParse } from '../utils/helpers'
  * @throws Will throw if the movie data is invalid or the request fails.
  */
 export const fetchMovieByID = (id: number): Promise<Movie> =>
-  fetchAndSafeParse(endpoint.movie.id(id), movieSchema, 'Movie')
+  fetchAndSafeParse(endpoint.movie.id(id), undefined, movieSchema, 'Movie')
 
 /**
  * Gets a list of trending movies from TMDB this week.
@@ -18,7 +18,11 @@ export const fetchMovieByID = (id: number): Promise<Movie> =>
  * @returns {Promise<MovieResult[]>} - An array of trending movie results.
  */
 export const fetchWeeklyTrendingMovies = (): Promise<MovieResult[]> =>
-  fetchAndSafeParse(endpoint.movie.trending.week, movieResultSchema.array())
+  fetchAndSafeParse(
+    endpoint.movie.trending.week,
+    undefined,
+    movieResultSchema.array(),
+  )
 
 /**
  * Gets a list of trending movies from TMDB today.
@@ -26,4 +30,8 @@ export const fetchWeeklyTrendingMovies = (): Promise<MovieResult[]> =>
  * @returns {Promise<MovieResult[]>} - An array of trending movie results.
  */
 export const fetchDailyTrendingMovies = (): Promise<MovieResult[]> =>
-  fetchAndSafeParse(endpoint.movie.trending.day, movieResultSchema.array())
+  fetchAndSafeParse(
+    endpoint.movie.trending.day,
+    undefined,
+    movieResultSchema.array(),
+  )

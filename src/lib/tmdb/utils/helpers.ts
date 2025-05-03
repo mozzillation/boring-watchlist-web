@@ -1,5 +1,6 @@
 import { ZodSchema } from 'zod'
 import tmdb from '..'
+import { AxiosRequestConfig } from 'axios'
 
 /**
  * Fetches data from TMDB and validates it using a Zod schema.
@@ -13,10 +14,13 @@ import tmdb from '..'
  */
 export const fetchAndSafeParse = async <T>(
   url: string,
+  config: AxiosRequestConfig<unknown> | undefined,
   schema: ZodSchema<T>,
   errorContext: string = 'TMDB',
 ): Promise<T> => {
-  const { data } = await tmdb.get(url)
+  const { data } = await tmdb.get(url, config)
+
+  console.log(data)
   const parsed = schema.safeParse(data)
 
   if (!parsed.success) {

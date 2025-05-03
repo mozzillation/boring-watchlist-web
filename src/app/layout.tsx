@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import ThemeProvider from '@/components/theme/provider'
+import ContextProvider from '@/lib/hooks/api/provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,13 +16,15 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={` antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ContextProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ContextProvider>
       </body>
     </html>
   )

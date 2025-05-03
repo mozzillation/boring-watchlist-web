@@ -135,7 +135,7 @@ export const tvResultSchema = z.object({
   genre_ids: z.array(zId),
   media_type: z.literal('tv'),
   original_language: zString,
-  original_title: zNullableString,
+  original_name: zNullableString,
   name: zString,
   overview: zString,
   popularity: zNumber,
@@ -144,6 +144,40 @@ export const tvResultSchema = z.object({
   vote_average: zNumber,
   vote_count: zNumber,
   origin_country: z.array(zString),
+})
+
+// === Person Result Schema ===
+
+/** Schema for TMDB person result in lists like Trending or Discover */
+
+export const personResultSchema = z.object({
+  id: zId,
+  name: zString,
+  original_name: zString,
+  media_type: z.literal('person'),
+  adult: zBoolean,
+  popularity: zNumber,
+  gender: zNumber.optional(),
+  known_for_department: zString,
+  profile_path: zNullableString.optional(),
+  known_for: z.array(
+    z.discriminatedUnion('media_type', [movieResultSchema, tvResultSchema]),
+  ),
+})
+
+// === Multi Search Schema ===
+
+export const searchMultiResultItemSchema = z.discriminatedUnion('media_type', [
+  movieResultSchema,
+  tvResultSchema,
+  personResultSchema,
+])
+
+export const searchMultiResponseSchema = z.object({
+  page: z.number(),
+  results: z.array(searchMultiResultItemSchema),
+  total_pages: z.number(),
+  total_results: z.number(),
 })
 
 // === Movie Details Schema ===
@@ -222,3 +256,5 @@ export type TV = z.infer<typeof tvSchema>
 
 /** TypeScript type for a TV list item (e.g. trending) */
 export type TVResult = z.infer<typeof tvResultSchema>
+
+export type MultiSearchResult = z.infer<typeof searchMultiResponseSchema>
