@@ -1,5 +1,7 @@
+import SearchView from '@/views/search-view'
+
 const SearcPage = () => {
-  return <div className={`h-[200vh] `}>search</div>
+  return <SearchView />
 }
 
 export default SearcPage

@@ -1,5 +1,6 @@
 import { ZodSchema } from 'zod'
 import tmdb from '..'
+import { AxiosRequestConfig } from 'axios'
 
 /**
  * Fetches data from TMDB and validates it using a Zod schema.
@@ -13,10 +14,12 @@ import tmdb from '..'
  */
 export const fetchAndSafeParse = async <T>(
   url: string,
+  config: AxiosRequestConfig<unknown> | undefined,
   schema: ZodSchema<T>,
   errorContext: string = 'TMDB',
 ): Promise<T> => {
-  const { data } = await tmdb.get(url)
+  const { data } = await tmdb.get(url, config)
+
   const parsed = schema.safeParse(data)
 
   if (!parsed.success) {
@@ -28,4 +31,23 @@ export const fetchAndSafeParse = async <T>(
   }
 
   return parsed.data
+}
+
+type TMDBImageSize =
+  | 'w92'
+  | 'w154'
+  | 'w185'
+  | 'w342'
+  | 'w500'
+  | 'w780'
+  | 'original'
+
+const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/'
+
+export function buildTMDBImageUrl(
+  path: string | null | undefined,
+  size: TMDBImageSize = 'w500',
+): string | null {
+  if (!path) return null
+  return `${TMDB_IMAGE_BASE_URL}${size}${path}`
 }

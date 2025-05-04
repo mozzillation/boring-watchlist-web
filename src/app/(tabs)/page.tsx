@@ -1,13 +1,9 @@
-import { fetchMovieByID } from '@/lib/tmdb/queries/movie'
+// import { fetchMovieByID } from '@/lib/tmdb/queries/movie'
 
-const Home = async () => {
-  const movie = await fetchMovieByID(8888)
+const Home = () => {
+  // const movie = await fetchMovieByID(8888)
 
-  return (
-    <div>
-      {movie.id} {movie.title}
-    </div>
-  )
+  return <div>Homepage</div>
 }
 
 export default Home

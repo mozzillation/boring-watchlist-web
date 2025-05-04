@@ -24,11 +24,11 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`w-full sm:w-20 sm:h-svh flex sm:flex-col items-center content-center justify-between p-2 border-t sm:border-r border-zinc-50`}
+      className={`w-full sm:w-20 sm:h-svh flex sm:flex-col items-center content-center justify-between p-2 border-t sm:border-t-0 sm:border-r bg-card`}
     >
       <header className={`hidden sm:block`}>
         <Link href={`/`}>
-          <div className={`w-16 h-10 bg-slate-200 rounded-sm`} />
+          <div className={`w-16 h-10 bg-zinc-100 rounded-sm`} />
         </Link>
       </header>
       <nav
