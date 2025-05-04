@@ -20,7 +20,6 @@ export const fetchAndSafeParse = async <T>(
 ): Promise<T> => {
   const { data } = await tmdb.get(url, config)
 
-  console.log(data)
   const parsed = schema.safeParse(data)
 
   if (!parsed.success) {

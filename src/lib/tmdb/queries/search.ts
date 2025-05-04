@@ -11,7 +11,7 @@ export const performMultiSearch = ({
   query: string
   include_adult?: boolean
   language?: string
-  page?: number
+  page?: number | unknown
 }): Promise<MultiSearchResult> =>
   fetchAndSafeParse(
     endpoint.search.multi,
