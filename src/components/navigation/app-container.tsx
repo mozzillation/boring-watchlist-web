@@ -11,7 +11,7 @@ const AppContainer: React.FC<AppContainerProps> = ({ children }) => {
     >
       <Sidebar />
       <main
-        className={`h-auto w-screen sm:w-full overflow-scroll grow bg-background p-2`}
+        className={`h-full w-screen sm:w-full bg-card sm:bg-background overflow-y-scroll`}
       >
         {children}
       </main>

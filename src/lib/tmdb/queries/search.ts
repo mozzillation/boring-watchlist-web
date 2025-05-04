@@ -4,7 +4,7 @@ import { fetchAndSafeParse } from '../utils/helpers'
 
 export const performMultiSearch = ({
   query,
-  include_adult = true,
+  include_adult = false,
   language = 'en-US',
   page = 1,
 }: {

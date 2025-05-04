@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
 const buttonVariants = cva(
-  'relative bg-background overflow-hidden rounded-md transition-all cursor-pointer z-20 select-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-background focus:outline-none focus:ring-accent disabled:pointer-events-none disabled:opacity-50 flex shrink',
+  'relative overflow-hidden rounded-md transition-all cursor-pointer z-20 select-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-background focus:outline-none focus:ring-accent disabled:pointer-events-none disabled:opacity-50 flex shrink',
   {
     variants: {
       variant: {

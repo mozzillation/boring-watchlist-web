@@ -158,7 +158,7 @@ export const personResultSchema = z.object({
   adult: zBoolean,
   popularity: zNumber,
   gender: zNumber.optional(),
-  known_for_department: zString,
+  known_for_department: zNullableString.optional(),
   profile_path: zNullableString.optional(),
   known_for: z.array(
     z.discriminatedUnion('media_type', [movieResultSchema, tvResultSchema]),
