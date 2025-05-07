@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { MultiSearchResult } from '../../tmdb/schema'
+import { MovieCredits, MultiSearchResult } from '../../tmdb/schema'
 import { performMultiSearch } from '../../tmdb/queries/search'
+import { fetchMovieCreditsByID } from '@/lib/tmdb/queries/movie'
 
 export const useMultiSearch = (query: string) => {
   return useQuery<MultiSearchResult>({
@@ -21,5 +22,14 @@ export const useInfiniteMultiSearch = (query: string) => {
     initialPageParam: 1,
     getNextPageParam: ({ page, total_pages }) =>
       page < total_pages ? page++ : undefined,
+  })
+}
+
+export const useMovieCredits = (id: number) => {
+  return useQuery<MovieCredits>({
+    queryKey: ['movie-credits', id],
+    queryFn: async () => fetchMovieCreditsByID(id),
+    staleTime: Infinity,
+    enabled: !!id,
   })
 }

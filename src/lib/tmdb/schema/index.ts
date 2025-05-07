@@ -243,6 +243,43 @@ export const tvSchema = z.object({
   seasons: z.array(seasonSchema),
 })
 
+export const castPersonSchema = z.object({
+  adult: zBoolean,
+  gender: zNumber.optional(),
+  id: zId,
+  known_for_department: zNullableString.optional(),
+  name: zString,
+  original_name: zString,
+  popularity: zNumber,
+  profile_path: zNullableString.optional(),
+  cast_id: zId,
+  character: zNullableString.optional(),
+  credit_id: zNullableString.optional(),
+  order: zNumber,
+})
+
+export const crewPersonSchema = z.object({
+  adult: zBoolean,
+  gender: zNumber.optional(),
+  id: zId,
+  known_for_department: zNullableString.optional(),
+  name: zString,
+  original_name: zString,
+  popularity: zNumber,
+  profile_path: zNullableString.optional(),
+  cast_id: zId.optional(),
+  character: zNullableString.optional(),
+  credit_id: zNullableString.optional(),
+  department: zNullableString.optional(),
+  job: zNullableString.optional(),
+})
+
+export const movieCreditsSchema = z.object({
+  id: zId,
+  cast: z.array(castPersonSchema),
+  crew: z.array(crewPersonSchema),
+})
+
 // === Types ===
 
 /** TypeScript type for full Movie details */
@@ -258,3 +295,5 @@ export type TV = z.infer<typeof tvSchema>
 export type TVResult = z.infer<typeof tvResultSchema>
 
 export type MultiSearchResult = z.infer<typeof searchMultiResponseSchema>
+
+export type MovieCredits = z.infer<typeof movieCreditsSchema>

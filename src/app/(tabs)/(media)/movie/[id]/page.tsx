@@ -1,26 +1,46 @@
-import { fetchMovieByID } from '@/lib/tmdb/queries/movie'
+import { fetchMovieByID, fetchMovieCreditsByID } from '@/lib/tmdb/queries/movie'
+import MovieDetailsView from '@/views/movie-details-view'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Params = Promise<{
   id: string
 }>
 
-type MovieDetailPageProps = {
+type MovieDetailsPageProps = {
   params: Params
 }
 
-const MovieDetailPage: React.FC<MovieDetailPageProps> = async ({ params }) => {
+export const generateMetadata = async ({
+  params,
+}: MovieDetailsPageProps): Promise<Metadata> => {
   const { id } = await params
 
   const parsedID = parseInt(id)
   const movie = await fetchMovieByID(parsedID)
 
-  return (
-    <div>
-      <div>Title: {movie.title}</div>
-      <div>Release Date: {movie.release_date}</div>
-      <div>Description: {movie.overview}</div>
-    </div>
-  )
+  return {
+    title: movie.title,
+    description: movie.overview,
+  }
 }
 
-export default MovieDetailPage
+export const dynamic = 'force-dynamic'
+
+const MovieDetailsPage: React.FC<MovieDetailsPageProps> = async ({
+  params,
+}) => {
+  const { id } = await params
+
+  const parsedID = parseInt(id)
+  const movie = await fetchMovieByID(parsedID)
+  const credits = await fetchMovieCreditsByID(parsedID)
+
+  console.log(credits)
+
+  if (!movie) notFound()
+
+  return <MovieDetailsView movie={movie} />
+}
+
+export default MovieDetailsPage

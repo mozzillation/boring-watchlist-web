@@ -19,6 +19,20 @@ const endpoint = {
      * @returns {string} The API path for the movie detail
      */
     id: (id: number) => `/movie/${id}`,
+
+    /**
+     * Get credits for a specific movie by its ID
+     * @param {number} id - The TMDB ID of the movie
+     * @returns {string} The API path for the movie detail
+     */
+    credits: (id: number) => `/movie/${id}/credits`,
+
+    /**
+     * Get recommendations based on specific movie by its ID
+     * @param {number} id - The TMDB ID of the movie
+     * @returns {string} The API path for the movie detail
+     */
+    recommendations: (id: number) => `/movie/${id}/recommendations`,
   },
 
   /** Endpoints related to TV show data */
@@ -38,6 +52,20 @@ const endpoint = {
      * @returns {string} The API path for the TV show detail
      */
     id: (id: number) => `/tv/${id}`,
+
+    /**
+     * Get credits for a TV show by its ID
+     * @param {number} id - The TMDB ID of the TV show
+     * @returns {string} The API path for the TV show detail
+     */
+    credits: (id: number) => `/tv/${id}/credits`,
+
+    /**
+     * Get recommendations based on specific TV show by its ID
+     * @param {number} id - The TMDB ID of the TV show
+     * @returns {string} The API path for the TV show detail
+     */
+    recommendations: (id: number) => `/tv/${id}/recommendations`,
   },
 
   /** Endpoints related to search functionality */
