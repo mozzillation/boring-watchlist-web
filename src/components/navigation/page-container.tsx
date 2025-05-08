@@ -9,7 +9,12 @@ const PageContainer: React.FC<PageContainerProps> = ({
   className,
 }) => {
   return (
-    <div className={cn(`w-full sm:max-w-xl m-auto flex min-h-full`, className)}>
+    <div
+      className={cn(
+        `bg-card sm:shadow-2xl sm:rounded-xl sm:border flex flex-col grow min-h-full overflow-hidden`,
+        className,
+      )}
+    >
       {children}
     </div>
   )

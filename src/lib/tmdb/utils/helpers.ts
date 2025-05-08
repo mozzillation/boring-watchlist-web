@@ -22,6 +22,8 @@ export const fetchAndSafeParse = async <T>(
 
   const parsed = schema.safeParse(data)
 
+  console.log(data)
+
   if (!parsed.success) {
     console.error(
       `[${errorContext} ERROR] Invalid response from ${url}`,

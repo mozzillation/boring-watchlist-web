@@ -165,12 +165,29 @@ export const personResultSchema = z.object({
   ),
 })
 
+// === Collection Result Schema ===
+
+/** Schema for TMDB collection result in lists like Search  */
+
+export const collectionResultSchema = z.object({
+  id: zId,
+  backdrop_path: zNullableString,
+  title: zString,
+  original_title: zString,
+  media_type: z.literal('collection'),
+  overview: zString,
+  poster_path: zNullableString,
+  adult: zBoolean,
+  original_language: zString,
+})
+
 // === Multi Search Schema ===
 
 export const searchMultiResultItemSchema = z.discriminatedUnion('media_type', [
   movieResultSchema,
   tvResultSchema,
   personResultSchema,
+  collectionResultSchema,
 ])
 
 export const searchMultiResponseSchema = z.object({
@@ -281,6 +298,10 @@ export const movieCreditsSchema = z.object({
 })
 
 // === Types ===
+
+export type MediaType = z.infer<
+  typeof searchMultiResultItemSchema
+>['media_type']
 
 /** TypeScript type for full Movie details */
 export type Movie = z.infer<typeof movieSchema>

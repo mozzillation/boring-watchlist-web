@@ -16,12 +16,16 @@ export const useInfiniteMultiSearch = (query: string) => {
   return useInfiniteQuery<MultiSearchResult>({
     queryKey: ['multi-search', query],
     queryFn: async ({ pageParam = 1 }) =>
-      performMultiSearch({ query, page: pageParam }),
+      performMultiSearch({
+        query,
+        page: pageParam,
+        exclude_media_types: ['collection', 'person'],
+      }),
     staleTime: 1000 * 60 * 60, // 1 hour
     enabled: !!query,
     initialPageParam: 1,
     getNextPageParam: ({ page, total_pages }) =>
-      page < total_pages ? page++ : undefined,
+      page < total_pages ? page + 1 : undefined,
   })
 }
 
