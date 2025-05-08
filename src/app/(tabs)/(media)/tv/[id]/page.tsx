@@ -1,28 +1,41 @@
 import { fetchTVShowByID } from '@/lib/tmdb/queries/tv'
+import TVDetailsView from '@/views/tv-details-view'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Params = Promise<{
   id: string
 }>
 
-type TVShowDetailPageProps = {
+type TVDetailsPageProps = {
   params: Params
 }
 
-const TVShowDetailPage: React.FC<TVShowDetailPageProps> = async ({
+export const generateMetadata = async ({
   params,
-}) => {
+}: TVDetailsPageProps): Promise<Metadata> => {
   const { id } = await params
 
   const parsedID = parseInt(id)
   const tv = await fetchTVShowByID(parsedID)
 
-  return (
-    <div>
-      <div>Title: {tv.original_name}</div>
-      <div># of seasons: {tv.number_of_seasons}</div>
-      <div>Description: {tv.overview}</div>
-    </div>
-  )
+  return {
+    title: tv.name,
+    description: tv.overview,
+  }
 }
 
-export default TVShowDetailPage
+export const dynamic = 'force-dynamic'
+
+const TVDetailsPage: React.FC<TVDetailsPageProps> = async ({ params }) => {
+  const { id } = await params
+
+  const parsedID = parseInt(id)
+  const movie = await fetchTVShowByID(parsedID)
+
+  if (!movie) notFound()
+
+  return <TVDetailsView tv={movie} />
+}
+
+export default TVDetailsPage

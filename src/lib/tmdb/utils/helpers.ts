@@ -22,6 +22,8 @@ export const fetchAndSafeParse = async <T>(
 
   const parsed = schema.safeParse(data)
 
+  console.log(data)
+
   if (!parsed.success) {
     console.error(
       `[${errorContext} ERROR] Invalid response from ${url}`,
@@ -44,10 +46,26 @@ type TMDBImageSize =
 
 const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/'
 
-export function buildTMDBImageUrl(
+export const buildTMDBImageUrl = (
   path: string | null | undefined,
   size: TMDBImageSize = 'w500',
-): string | null {
+): string | null => {
   if (!path) return null
   return `${TMDB_IMAGE_BASE_URL}${size}${path}`
+}
+
+export const formatRuntime = (minutes: number): string => {
+  if (!Number.isFinite(minutes) || minutes <= 0) return 'N/A'
+
+  const hours = Math.floor(minutes / 60)
+  const mins = minutes % 60
+
+  if (hours > 0 && mins > 0) return `${hours}h ${mins}min`
+  if (hours > 0) return `${hours}h`
+  return `${mins}min`
+}
+
+export const formatSeasonCount = (count: number): string => {
+  if (!Number.isFinite(count) || count <= 0) return 'No seasons'
+  return `${count} season${count === 1 ? '' : 's'}`
 }

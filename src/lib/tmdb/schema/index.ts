@@ -165,12 +165,29 @@ export const personResultSchema = z.object({
   ),
 })
 
+// === Collection Result Schema ===
+
+/** Schema for TMDB collection result in lists like Search  */
+
+export const collectionResultSchema = z.object({
+  id: zId,
+  backdrop_path: zNullableString,
+  title: zString,
+  original_title: zString,
+  media_type: z.literal('collection'),
+  overview: zString,
+  poster_path: zNullableString,
+  adult: zBoolean,
+  original_language: zString,
+})
+
 // === Multi Search Schema ===
 
 export const searchMultiResultItemSchema = z.discriminatedUnion('media_type', [
   movieResultSchema,
   tvResultSchema,
   personResultSchema,
+  collectionResultSchema,
 ])
 
 export const searchMultiResponseSchema = z.object({
@@ -243,7 +260,48 @@ export const tvSchema = z.object({
   seasons: z.array(seasonSchema),
 })
 
+export const castPersonSchema = z.object({
+  adult: zBoolean,
+  gender: zNumber.optional(),
+  id: zId,
+  known_for_department: zNullableString.optional(),
+  name: zString,
+  original_name: zString,
+  popularity: zNumber,
+  profile_path: zNullableString.optional(),
+  cast_id: zId,
+  character: zNullableString.optional(),
+  credit_id: zNullableString.optional(),
+  order: zNumber,
+})
+
+export const crewPersonSchema = z.object({
+  adult: zBoolean,
+  gender: zNumber.optional(),
+  id: zId,
+  known_for_department: zNullableString.optional(),
+  name: zString,
+  original_name: zString,
+  popularity: zNumber,
+  profile_path: zNullableString.optional(),
+  cast_id: zId.optional(),
+  character: zNullableString.optional(),
+  credit_id: zNullableString.optional(),
+  department: zNullableString.optional(),
+  job: zNullableString.optional(),
+})
+
+export const movieCreditsSchema = z.object({
+  id: zId,
+  cast: z.array(castPersonSchema),
+  crew: z.array(crewPersonSchema),
+})
+
 // === Types ===
+
+export type MediaType = z.infer<
+  typeof searchMultiResultItemSchema
+>['media_type']
 
 /** TypeScript type for full Movie details */
 export type Movie = z.infer<typeof movieSchema>
@@ -258,3 +316,5 @@ export type TV = z.infer<typeof tvSchema>
 export type TVResult = z.infer<typeof tvResultSchema>
 
 export type MultiSearchResult = z.infer<typeof searchMultiResponseSchema>
+
+export type MovieCredits = z.infer<typeof movieCreditsSchema>

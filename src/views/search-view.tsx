@@ -1,6 +1,7 @@
 'use client'
 
 import PageContainer from '@/components/navigation/page-container'
+import Wrapper from '@/components/navigation/wrapper'
 import SearchBox from '@/components/search/search-box'
 import SearchEmptyState from '@/components/search/search-empty-state'
 import SearchResult from '@/components/search/search-result'
@@ -42,8 +43,8 @@ const SearchView = () => {
   const hasResults = data?.pages.some((page) => page.results.length > 0)
 
   return (
-    <PageContainer className="sm:px-4 sm:py-8">
-      <div className="bg-card p-4 sm:p-6 sm:shadow-2xl sm:rounded-xl sm:border gap-4 flex flex-col grow min-h-full">
+    <Wrapper className="sm:px-4 sm:py-8">
+      <PageContainer className={`p-4 sm:p-6`}>
         <SearchBox
           type="text"
           value={query}
@@ -55,7 +56,7 @@ const SearchView = () => {
 
         {isLoading ? (
           <div className="w-full flex flex-col shrink gap-4">
-            <h2 className="font-semibold text-sm text-muted-foreground animate-pulse">
+            <h2 className="font-semibold text-sm text-muted-foreground animate-pulse mt-4">
               Loading...
             </h2>
             {Array.from({ length: 9 }).map((_, i) => (
@@ -67,7 +68,7 @@ const SearchView = () => {
         ) : (
           <div className="w-full flex flex-col shrink gap-4">
             {debouncedQuery && (
-              <h2 className="font-semibold text-sm text-muted-foreground">
+              <h2 className="font-semibold text-sm text-muted-foreground mt-4">
                 Results
               </h2>
             )}
@@ -111,6 +112,15 @@ const SearchView = () => {
                           image={buildTMDBImageUrl(item.profile_path)}
                         />
                       )
+                    case 'collection':
+                      return (
+                        <SearchResult
+                          key={item.id}
+                          type="Collection"
+                          heading={item.original_title}
+                          image={buildTMDBImageUrl(item.poster_path)}
+                        />
+                      )
                     default:
                       return null
                   }
@@ -130,8 +140,8 @@ const SearchView = () => {
             <div ref={loadMoreRef} className="h-1" />
           </div>
         )}
-      </div>
-    </PageContainer>
+      </PageContainer>
+    </Wrapper>
   )
 }
 
