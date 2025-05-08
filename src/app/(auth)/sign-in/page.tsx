@@ -3,8 +3,8 @@
 import { motion, Variants } from 'motion/react'
 
 import { Button } from '@/components/ui/button'
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
+// import { ArrowLeft } from 'lucide-react'
+// import Link from 'next/link'
 
 import { signInWithGoogle } from '@/lib/auth-actions'
 
@@ -37,13 +37,13 @@ const CreateAccountPage = () => {
     <div
       className={`w-full flex flex-col items-center justify-center content-center h-full grow`}
     >
-      <header className={`p-4 flex flex-row w-full`}>
+      {/* <header className={`p-4 flex flex-row w-full`}>
         <Link href="/" passHref>
           <Button variant="secondary" size="icon">
             <ArrowLeft strokeWidth={3} />
           </Button>
         </Link>
-      </header>
+      </header> */}
       <motion.main
         variants={MOTION_PARENT}
         initial="initial"
