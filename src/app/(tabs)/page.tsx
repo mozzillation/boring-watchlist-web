@@ -1,12 +1,14 @@
-// import { fetchMovieByID } from '@/lib/tmdb/queries/movie'
-// import { createServerClient } from '@/lib/supabase'
+'use client'
 
-async function Home() {
-  // const movie = await fetchMovieByID(8888)
-  // const supabase = await createServerClient()
-  // const { data } = await supabase.auth.getUser()
+import { Button } from '@/components/ui/button'
+import { signOut } from '@/lib/auth-actions'
 
-  return <div>Homepage</div>
+const Home = () => {
+  return (
+    <div>
+      <Button onClick={() => signOut()}>Sign Out</Button>
+    </div>
+  )
 }
 
 export default Home
